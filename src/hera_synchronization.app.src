@@ -1,0 +1,16 @@
+{application, hera_synchronization,
+ [{description, "An OTP application"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, {hera_synchronization_app, []}},
+  {applications,
+   [kernel,
+    stdlib,
+    hera
+   ]},
+  {env,[]},
+  {modules, []},
+
+  {licenses, ["Apache 2.0"]},
+  {links, []}
+ ]}.
