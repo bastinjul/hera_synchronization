@@ -1,8 +1,8 @@
 {application, hera_synchronization,
  [{description, "An OTP application"},
   {vsn, "0.1.0"},
-  {registered, []},
-  {mod, {hera_synchronization, []}},
+  {registered, [hera_global_dispatch, hera_global_sync, hera_synchronization_app, hera_synchronization_sup]},
+  {mod, {hera_synchronization_app, []}},
   {applications,
    [kernel,
     stdlib,
@@ -10,7 +10,7 @@
    ]},
   {env,[]},
   {modules, [
-   hera_global_dispatch, hera_global_sync, hera_synchronization, hera_synchronization_sup
+   hera_global_dispatch, hera_global_sync, hera_synchronization_app, hera_synchronization_sup
   ]},
 
   {licenses, ["Apache 2.0"]},

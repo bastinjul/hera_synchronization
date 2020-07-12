@@ -3,7 +3,7 @@
 %% @end
 %%%-------------------------------------------------------------------
 
--module(hera_synchronization).
+-module(hera_synchronization_app).
 
 -behaviour(application).
 
