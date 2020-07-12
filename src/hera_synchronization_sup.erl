@@ -32,7 +32,7 @@ init([]) ->
     intensity => MaxRestarts,
     period => MaxSecondsBetweenRestarts},
 
-  Measurements = application:get_env(hera_synchronization, measurements),
+  {ok, Measurements} = application:get_env(hera_synchronization, measurements),
   SyncMeas = lists:filter(fun({_Name, Sync}) -> Sync end, Measurements),
 
   Children = [#{id => hera_utils:concat_atoms(hera_global_dispatch_, Name), start => {hera_global_sync, start_link, [Name, hera_utils:concat_atoms(dispatch_, Name)]}} || {Name, _Sync} <- SyncMeas],
