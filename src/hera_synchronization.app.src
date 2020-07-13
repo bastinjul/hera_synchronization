@@ -2,6 +2,7 @@
  [{description, "An OTP application"},
   {vsn, "0.1.0"},
   {registered, [hera_global_dispatch, hera_global_sync, hera_synchronization_app, hera_synchronization_sup]},
+  {start_phases, []},
   {mod, {hera_synchronization_app, []}},
   {applications,
    [kernel,
