@@ -18,7 +18,11 @@
 %%%===================================================================
 
 start_link(MeasurementName, GlobalName) ->
-  global:register_name(GlobalName, Pid = spawn_link(?MODULE, init, [MeasurementName, GlobalName])),
+  Pid = spawn_link(?MODULE, init, [MeasurementName, GlobalName]),
+  case global:whereis_name(GlobalName) of
+    undefined -> global:register_name(GlobalName, Pid);
+    _OtherPid -> global:re_register_name(GlobalName, Pid)
+  end,
   {ok, Pid}.
 
 init(MeasurementName, GlobalName) ->

@@ -35,7 +35,12 @@
 -spec(start_link() ->
   {ok, Pid :: pid()} | ignore | {error, Reason :: term()}).
 start_link() ->
-  gen_server:start_link({global, ?SYNC_PROC}, ?MODULE, [], []).
+  {ok, Pid} = gen_server:start_link(?MODULE, [], []),
+  case global:whereis_name(?SYNC_PROC) of
+     undefined -> global:register_name(?SYNC_PROC, Pid);
+     _Pid -> global:re_register_name(?SYNC_PROC, Pid)
+  end,
+  {ok, Pid}.
 
 %%%===================================================================
 %%% gen_server callbacks
